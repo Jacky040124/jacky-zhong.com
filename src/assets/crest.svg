@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="JZ monogram crest">
+  <title>Jacky Zhong crest</title>
+  <defs>
+    <radialGradient id="brassGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D6A977" stop-opacity="0.95" />
+      <stop offset="80%" stop-color="#B08D57" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#7B6037" stop-opacity="0.85" />
+    </radialGradient>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="#B08D57" stroke-width="0.6" stroke-opacity="0.55" />
+    </pattern>
+  </defs>
+
+  <g fill="none" stroke="#B08D57" stroke-linecap="round" stroke-linejoin="round">
+    <!-- outer ring + tick marks -->
+    <circle cx="120" cy="120" r="112" stroke-width="1.25" />
+    <circle cx="120" cy="120" r="104" stroke-width="0.5" stroke-opacity="0.55" />
+    <g stroke-width="1">
+      <line x1="120" y1="2" x2="120" y2="14" />
+      <line x1="120" y1="226" x2="120" y2="238" />
+      <line x1="2" y1="120" x2="14" y2="120" />
+      <line x1="226" y1="120" x2="238" y2="120" />
+      <line x1="32.7" y1="32.7" x2="41.2" y2="41.2" />
+      <line x1="207.3" y1="32.7" x2="198.8" y2="41.2" />
+      <line x1="32.7" y1="207.3" x2="41.2" y2="198.8" />
+      <line x1="207.3" y1="207.3" x2="198.8" y2="198.8" />
+    </g>
+
+    <!-- middle medallion ring with dot pattern -->
+    <circle cx="120" cy="120" r="92" stroke-width="0.75" stroke-opacity="0.7" />
+    <g fill="#B08D57" stroke="none">
+      <circle cx="120" cy="28" r="1.6" />
+      <circle cx="120" cy="212" r="1.6" />
+      <circle cx="28" cy="120" r="1.6" />
+      <circle cx="212" cy="120" r="1.6" />
+      <circle cx="55" cy="55" r="1.2" />
+      <circle cx="185" cy="55" r="1.2" />
+      <circle cx="55" cy="185" r="1.2" />
+      <circle cx="185" cy="185" r="1.2" />
+    </g>
+
+    <!-- inner medallion shape (shield like) -->
+    <path d="M120 38
+             C 156 38 184 58 184 92
+             L 184 132
+             C 184 162 160 188 120 204
+             C 80 188 56 162 56 132
+             L 56 92
+             C 56 58 84 38 120 38 Z" stroke-width="1.5" />
+    <path d="M120 38
+             C 156 38 184 58 184 92
+             L 184 132
+             C 184 162 160 188 120 204
+             C 80 188 56 162 56 132
+             L 56 92
+             C 56 58 84 38 120 38 Z" fill="url(#hatch)" stroke="none" />
+
+    <!-- crossed laurel branches -->
+    <g stroke-width="0.9" stroke-opacity="0.85">
+      <path d="M70 168 q 18 8 30 18" />
+      <path d="M170 168 q -18 8 -30 18" />
+      <path d="M80 175 q 6 -4 12 -3 q -2 6 -8 8 z" fill="#B08D57" stroke="none" opacity="0.7" />
+      <path d="M88 184 q 6 -3 12 -1 q -3 6 -9 7 z" fill="#B08D57" stroke="none" opacity="0.7" />
+      <path d="M160 175 q -6 -4 -12 -3 q 2 6 8 8 z" fill="#B08D57" stroke="none" opacity="0.7" />
+      <path d="M152 184 q -6 -3 -12 -1 q 3 6 9 7 z" fill="#B08D57" stroke="none" opacity="0.7" />
+    </g>
+
+    <!-- JZ interlocked monogram, set as paths so the symmetry reads -->
+    <g fill="url(#brassGlow)" stroke="none">
+      <!-- J: right-hand letter, mirrored to point inward -->
+      <path d="M132 70
+               L 152 70
+               L 152 130
+               C 152 144 142 152 130 152
+               C 120 152 113 146 111 138
+               L 122 134
+               C 123 138 126 141 130 141
+               C 134 141 137 138 137 132
+               L 137 84
+               L 132 84 Z" />
+
+      <!-- Z: left-hand letter, mirrored for symmetry -->
+      <path d="M88 70
+               L 108 70
+               L 108 80
+               L 95 124
+               L 108 124
+               L 108 140
+               L 80 140
+               L 80 130
+               L 93 86
+               L 88 86 Z" />
+    </g>
+
+    <!-- ribbon banner across bottom -->
+    <g stroke-width="1">
+      <path d="M52 196 L 188 196" stroke-opacity="0.6" />
+      <path d="M58 196 L 64 200 L 58 204 Z" fill="#B08D57" stroke="none" opacity="0.7" />
+      <path d="M182 196 L 176 200 L 182 204 Z" fill="#B08D57" stroke="none" opacity="0.7" />
+    </g>
+
+    <!-- bottom tag year -->
+    <g fill="#B08D57" stroke="none" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="2" text-anchor="middle">
+      <text x="120" y="222" opacity="0.75">— JZ · MMXXVI —</text>
+    </g>
+  </g>
+</svg>
