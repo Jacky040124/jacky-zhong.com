@@ -46,7 +46,6 @@ export default function GuillocheCrest({ size = 360, fallbackAlt = 'JZ crest' }:
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const pAny = p as any;
           let shader: unknown = null;
-          let intensity = 0;
 
           pAny.setup = () => {
             pAny.createCanvas(size, size, pAny.WEBGL);
@@ -54,14 +53,15 @@ export default function GuillocheCrest({ size = 360, fallbackAlt = 'JZ crest' }:
             pAny.noStroke();
             shader = pAny.createShader(vertSource, fragSource);
             pAny.shader(shader);
-            setShaderActive(true);
+            if (!cancelled) setShaderActive(true);
+            if (reducedMotion) pAny.noLoop();
           };
 
           pAny.draw = () => {
             if (!shader) return;
             const elapsed = (performance.now() - startedAt) / 1000;
-            // Ease intensity from 0 to 1 over ~600ms so the crest fades in.
-            intensity = Math.min(1, intensity + (reducedMotion ? 1 : 0.04));
+            // Time-based 0→1 ramp over 600ms — frame-rate independent.
+            const intensity = reducedMotion ? 1 : Math.min(1, elapsed / 0.6);
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const s = shader as any;
@@ -71,26 +71,26 @@ export default function GuillocheCrest({ size = 360, fallbackAlt = 'JZ crest' }:
             s.setUniform('u_seed', seed);
             s.setUniform('u_intensity', intensity);
             pAny.rect(-size / 2, -size / 2, size, size);
-
-            if (reducedMotion) pAny.noLoop();
           };
         };
 
         const instance = new P5(sketch, targetHost) as unknown as P5Instance;
 
-        const onMove = (event: PointerEvent) => {
-          if (coarsePointer) return;
-          const rect = targetHost.getBoundingClientRect();
-          // Mouse relative to crest center, then normalized into [0, 1] within a 2× radius window.
-          const dx = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
-          const dy = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
-          mouse.x = Math.min(1, Math.max(0, dx + 0.5));
-          mouse.y = Math.min(1, Math.max(0, dy + 0.5));
-        };
-        window.addEventListener('pointermove', onMove, { passive: true });
+        let onMove: ((event: PointerEvent) => void) | null = null;
+        if (!coarsePointer) {
+          onMove = (event: PointerEvent) => {
+            const rect = targetHost.getBoundingClientRect();
+            // Crest's bounding-box left/right edges map to mouse.x = 0/1.
+            const dx = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
+            const dy = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
+            mouse.x = Math.min(1, Math.max(0, dx + 0.5));
+            mouse.y = Math.min(1, Math.max(0, dy + 0.5));
+          };
+          window.addEventListener('pointermove', onMove, { passive: true });
+        }
 
         cleanupSketch = () => {
-          window.removeEventListener('pointermove', onMove);
+          if (onMove) window.removeEventListener('pointermove', onMove);
           try {
             instance.remove();
           } catch {
@@ -125,7 +125,6 @@ export default function GuillocheCrest({ size = 360, fallbackAlt = 'JZ crest' }:
       cancelled = true;
       observer?.disconnect();
       cleanupSketch?.();
-      setShaderActive(false);
     };
   }, [size]);
 
