@@ -1,33 +1,107 @@
 ---
-import '@/styles/global.css';
-const title = 'Jacky Zhong — Builder of AI agents and developer communities';
+import Base from '@/layouts/Base.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import crestUrl from '@/assets/crest.svg';
+
+const title = 'Jacky Zhong — builder of AI agents and developer communities';
 const description = 'Personal portfolio of Jacky Zhong. Vancouver-based builder of AI agents, organizer of developer communities, creative coder.';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main class="container section">
-      <p class="mono" aria-hidden="true">— Phase 0 / bootstrap</p>
-      <h1 class="display" style="font-size: var(--type-display-xl);">Jacky Zhong</h1>
-      <p style="font-size: var(--type-body-lg); max-width: 60ch;">
-        Vancouver-based builder of AI agents and developer communities.
-        Site under construction. Foundation layer (color, type, grid) live; generative layer next.
-      </p>
-    </main>
-  </body>
-</html>
+<Base title={title} description={description}>
+  <Header />
+
+  <main id="main" class="hero container">
+    <p class="hero__eyebrow mono">Phase 1 · foundation layer · plate I</p>
+
+    <div class="hero__stage">
+      <img src={crestUrl.src} width={crestUrl.width} height={crestUrl.height} alt="" aria-hidden="true" class="hero__crest" />
+      <div class="hero__copy">
+        <h1 class="display hero__title">
+          <span>Vancouver based builder</span>
+          <span class="hero__italic">of AI agents and</span>
+          <span>developer communities.</span>
+        </h1>
+        <p class="hero__lede">
+          Foundation layer live: ink and bone palette, three voice typography, blueprint underlay, custom cursor, smooth scroll. Generative crest and shader work land in Phase 2.
+        </p>
+      </div>
+    </div>
+
+    <a class="hero__cue mono" href="#contact">Scroll · contact ↓</a>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-5);
+    padding-block: var(--space-7);
+  }
+
+  .hero__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-brass);
+    font-size: var(--type-tracker);
+    margin: 0;
+  }
+
+  .hero__stage {
+    display: grid;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .hero__crest {
+    width: clamp(180px, 24vw, 280px);
+    height: auto;
+    justify-self: start;
+    opacity: 0.92;
+  }
+
+  .hero__title {
+    margin: 0;
+    font-size: var(--type-display-xl);
+    line-height: 0.95;
+    display: grid;
+    gap: 0.05em;
+  }
+  .hero__italic {
+    font-style: italic;
+    color: var(--color-bone-soft);
+  }
+
+  .hero__lede {
+    margin: var(--space-3) 0 0;
+    font-size: var(--type-body-lg);
+    max-width: 56ch;
+    color: var(--color-bone-soft);
+  }
+
+  .hero__cue {
+    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: var(--type-tracker);
+    color: var(--color-bone);
+    border-bottom: 1px solid var(--color-brass);
+    padding-bottom: 0.2em;
+  }
+
+  @media (min-width: 900px) {
+    .hero__stage {
+      grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+    .hero__crest {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>
