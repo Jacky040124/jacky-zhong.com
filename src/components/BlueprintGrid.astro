@@ -1,0 +1,62 @@
+---
+/*
+ * Fixed-position, very-low-opacity faded indigo grid.
+ * The bottom-right "frame label" ('PLATE I — JZ — 2026 —') borrows the
+ * mechanical-drawing convention of cartouche markings.
+ * Renders behind every page (z-index var(--z-grid)).
+ */
+const plate = Astro.props.plate ?? 'PLATE I';
+const ordinal = Astro.props.ordinal ?? '— JZ —';
+const year = new Date().getFullYear();
+---
+
+<div class="blueprint" aria-hidden="true">
+  <div class="blueprint__grid"></div>
+  <div class="blueprint__frame">
+    <span class="mono">{plate}</span>
+    <span class="mono">{ordinal}</span>
+    <span class="mono">{year}</span>
+  </div>
+</div>
+
+<style>
+  .blueprint {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-grid);
+    pointer-events: none;
+  }
+  .blueprint__grid {
+    position: absolute;
+    inset: 0;
+    opacity: var(--grid-opacity);
+    background-image:
+      linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+    background-size: var(--grid-cell) var(--grid-cell);
+    mix-blend-mode: screen;
+  }
+  .blueprint__frame {
+    position: absolute;
+    right: var(--gutter-mobile);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + var(--space-2));
+    display: inline-flex;
+    gap: var(--space-2);
+    font-size: var(--type-tracker);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-bone-soft);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+  }
+  @media (min-width: 768px) {
+    .blueprint__frame {
+      right: var(--gutter-tablet);
+    }
+  }
+  @media (min-width: 1280px) {
+    .blueprint__frame {
+      right: var(--gutter-desktop);
+    }
+  }
+</style>

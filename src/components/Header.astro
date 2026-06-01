@@ -1,0 +1,129 @@
+---
+const nav = [
+  { href: '#about', label: 'About' },
+  { href: '#works', label: 'Works' },
+  { href: '#community', label: 'Community' },
+  { href: '#contact', label: 'Contact' },
+];
+
+const coords = '49.2827° N · 123.1207° W';
+const location = 'Vancouver, BC';
+---
+
+<header class="site-header" data-component="header">
+  <div class="site-header__inner container">
+    <a class="wordmark" href="/" aria-label="Jacky Zhong — home">
+      <span class="wordmark__first">Jacky</span>
+      <span class="wordmark__rule" aria-hidden="true"></span>
+      <span class="wordmark__last">Zhong</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ol>
+        {nav.map((item, index) => (
+          <li>
+            <a href={item.href}>
+              <span class="site-nav__index mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="site-nav__label">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <div class="locale mono" aria-label={`Location: ${location}`}>
+      <span>{location}</span>
+      <span>{coords}</span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: var(--z-header);
+    padding-block: var(--space-2);
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(15, 14, 12, 0.75), rgba(15, 14, 12, 0));
+    backdrop-filter: blur(2px);
+  }
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .site-header > * { pointer-events: auto; }
+  .site-header__inner > * { pointer-events: auto; }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--color-bone);
+    text-transform: none;
+  }
+  .wordmark__first,
+  .wordmark__last { font-weight: 500; }
+  .wordmark__rule {
+    width: 18px;
+    height: 1px;
+    background: var(--color-brass);
+    transform: translateY(-0.35em);
+    transition: width var(--hover-duration) var(--hover-ease);
+  }
+  .wordmark:hover .wordmark__rule { width: 36px; }
+
+  .site-nav {
+    justify-self: end;
+  }
+  .site-nav ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-3);
+  }
+  .site-nav a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4em;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-bone);
+  }
+  .site-nav__index {
+    font-size: var(--type-tracker);
+    color: var(--color-brass);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .locale {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: var(--type-tracker);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-bone-soft);
+    line-height: 1.4;
+  }
+
+  @media (min-width: 1024px) {
+    .locale { display: flex; }
+    .site-header__inner { gap: var(--space-5); }
+  }
+
+  @media (max-width: 767px) {
+    .site-nav ol { gap: var(--space-2); }
+    .site-nav__index { display: none; }
+    .site-header__inner {
+      grid-template-columns: auto 1fr;
+    }
+  }
+</style>
