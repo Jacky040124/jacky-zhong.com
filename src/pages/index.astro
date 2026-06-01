@@ -2,7 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import crestUrl from '@/assets/crest.svg';
+import GuillocheCrest from '@/components/hero/GuillocheCrest.tsx';
 
 const title = 'Jacky Zhong — builder of AI agents and developer communities';
 const description = 'Personal portfolio of Jacky Zhong. Vancouver-based builder of AI agents, organizer of developer communities, creative coder.';
@@ -12,10 +12,12 @@ const description = 'Personal portfolio of Jacky Zhong. Vancouver-based builder 
   <Header />
 
   <main id="main" class="hero container">
-    <p class="hero__eyebrow mono">Phase 1 · foundation layer · plate I</p>
+    <p class="hero__eyebrow mono">Phase 2 · generative layer · plate I</p>
 
     <div class="hero__stage">
-      <img src={crestUrl.src} width={crestUrl.width} height={crestUrl.height} alt="" aria-hidden="true" class="hero__crest" />
+      <div class="hero__crest">
+        <GuillocheCrest client:visible size={360} fallbackAlt="Living JZ crest" />
+      </div>
       <div class="hero__copy">
         <h1 class="display hero__title">
           <span>Vancouver based builder</span>
@@ -23,7 +25,7 @@ const description = 'Personal portfolio of Jacky Zhong. Vancouver-based builder 
           <span>developer communities.</span>
         </h1>
         <p class="hero__lede">
-          Foundation layer live: ink and bone palette, three voice typography, blueprint underlay, custom cursor, smooth scroll. Generative crest and shader work land in Phase 2.
+          Engraved live in your browser: two rose curve envelopes modulated by the cursor, sketched as brass line art over ink. Cross hatching project thumbnails and a generative 404 ship next.
         </p>
       </div>
     </div>
