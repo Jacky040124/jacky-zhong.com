@@ -75,6 +75,7 @@ export default function Cursor() {
       document.removeEventListener('mouseleave', onLeave);
       document.removeEventListener('mouseenter', onEnter);
       document.documentElement.classList.remove('has-custom-cursor');
+      gsap.killTweensOf([dot, ring]);
     };
   }, []);
 
