@@ -1,0 +1,47 @@
+/*
+ * Three voices: Bodoni Moda (display), Cormorant Garamond (body), JetBrains Mono (micro).
+ * Fonts are pulled from Google Fonts via Header preconnect + <link rel="stylesheet"> in Base.astro.
+ * Latin subset only to keep weight down.
+ */
+:root {
+  --font-display: 'Bodoni Moda', 'Bodoni 72', 'Didot', 'Times New Roman', serif;
+  --font-body: 'Cormorant Garamond', 'Garamond', 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+
+  --type-display-xl: clamp(3.5rem, 8vw, 7rem);
+  --type-display-lg: clamp(2.25rem, 4vw, 3.5rem);
+  --type-display-md: clamp(1.75rem, 2.6vw, 2.5rem);
+  --type-body-lg: 1.125rem;
+  --type-body: 1rem;
+  --type-micro: 0.75rem;
+  --type-tracker: 0.6875rem;
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-loose: 1.7;
+
+  --tracking-display: -0.01em;
+  --tracking-body: 0;
+  --tracking-mono: 0.04em;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+
+code, kbd, samp, .mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' on, 'liga' off;
+  letter-spacing: var(--tracking-mono);
+}

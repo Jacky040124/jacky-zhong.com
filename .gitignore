@@ -1,0 +1,34 @@
+# build output
+dist/
+.output/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# AI image pipeline output (regenerated from src/content/images.yaml)
+public/generated/raw/
+public/generated/treated/
+!public/generated/.gitkeep
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/settings.json
+
+# Vercel
+.vercel

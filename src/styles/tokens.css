@@ -1,0 +1,49 @@
+/*
+ * Design tokens. Brass+copper combined area must stay under 10% of any viewport.
+ * Ratios baked into spacing follow an 8px base grid (see grid.css).
+ */
+:root {
+  --color-ink: #0f0e0c;
+  --color-ink-soft: #1a1815;
+  --color-bone: #f2ede0;
+  --color-bone-soft: #d9d2c1;
+  --color-brass: #b08d57;
+  --color-oxblood: #5b1a1a;
+  --color-moss: #3d4e3a;
+  --color-indigo: #2a3a55;
+  --color-copper: #d77a3a;
+
+  --color-bg: var(--color-ink);
+  --color-fg: var(--color-bone);
+  --color-accent: var(--color-brass);
+  --color-accent-2: var(--color-oxblood);
+  --color-hover: var(--color-copper);
+  --color-grid: var(--color-indigo);
+
+  --grid-opacity: 0.035;
+  --hover-duration: 240ms;
+  --hover-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --max-content: 1320px;
+  --gutter-mobile: 1.25rem;
+  --gutter-tablet: 2rem;
+  --gutter-desktop: 3rem;
+
+  --radius-sharp: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --z-base: 0;
+  --z-grid: 1;
+  --z-content: 10;
+  --z-cursor: 50;
+  --z-header: 80;
+  --z-footer: 70;
+  --z-overlay: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --hover-duration: 0ms;
+  }
+}

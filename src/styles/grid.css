@@ -1,0 +1,48 @@
+/*
+ * 8px base grid. Blueprint underlay is purely decorative and lives at z-index 1.
+ * BlueprintGrid.astro renders the visible grid; this file exposes the spacing scale.
+ */
+:root {
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-5: 3rem;     /* 48px */
+  --space-6: 4rem;     /* 64px */
+  --space-7: 6rem;     /* 96px */
+  --space-8: 8rem;     /* 128px */
+  --space-section: clamp(4rem, 10vw, 9rem);
+  --grid-cell: 8px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content);
+  margin-inline: auto;
+  padding-inline: var(--gutter-mobile);
+}
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--gutter-tablet); }
+}
+
+@media (min-width: 1280px) {
+  .container { padding-inline: var(--gutter-desktop); }
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.blueprint-underlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grid);
+  pointer-events: none;
+  opacity: var(--grid-opacity);
+  background-image:
+    linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+  background-size: var(--grid-cell) var(--grid-cell);
+  mix-blend-mode: screen;
+}
