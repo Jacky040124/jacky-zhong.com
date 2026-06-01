@@ -100,7 +100,7 @@
     </g>
 
     <!-- bottom tag year -->
-    <g fill="#B08D57" stroke="none" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="2" text-anchor="middle">
+    <g fill="#B08D57" stroke="none" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="7" letter-spacing="2" text-anchor="middle">
       <text x="120" y="222" opacity="0.75">— JZ · MMXXVI —</text>
     </g>
   </g>

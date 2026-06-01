@@ -1,6 +1,7 @@
 import Lenis from 'lenis';
 
 let lenisInstance: Lenis | null = null;
+let rafId: number | null = null;
 
 export function initLenis(): Lenis | null {
   if (typeof window === 'undefined') return null;
@@ -20,13 +21,32 @@ export function initLenis(): Lenis | null {
 
   function raf(time: number) {
     lenis.raf(time);
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
   }
-  requestAnimationFrame(raf);
+  rafId = requestAnimationFrame(raf);
 
   document.documentElement.classList.add('lenis-smooth');
   lenisInstance = lenis;
+
+  if (import.meta.hot) {
+    import.meta.hot.dispose(destroyLenis);
+  }
+
   return lenis;
+}
+
+export function destroyLenis(): void {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+  if (lenisInstance) {
+    lenisInstance.destroy();
+    lenisInstance = null;
+  }
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.remove('lenis-smooth');
+  }
 }
 
 export function getLenis(): Lenis | null {
